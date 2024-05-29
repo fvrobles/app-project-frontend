@@ -6,6 +6,7 @@ import { AppState } from './app.state';
 import { setTitle } from './app.actions';
 import { AsyncPipe } from '@angular/common';
 import { Observable } from 'rxjs';
+import { environment } from '../environments/environment';
 
 @Component({
   selector: 'app-root',
@@ -33,7 +34,7 @@ export class AppComponent implements OnInit {
   }
 
   getTitleFromAPI() {
-    this.http.get(`http://localhost:8081/api/title`)
+    this.http.get(`${environment.apiUrl}/api/title`)
       .subscribe({
         next: (response: any) => {
           this.store.dispatch(setTitle({ title: response.title }));
